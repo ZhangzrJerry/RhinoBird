@@ -1,0 +1,7 @@
+.zip
+.ipynb_checkpoints/*
+
+bak/*
+data/*
+
+LatentFactorModel/*
