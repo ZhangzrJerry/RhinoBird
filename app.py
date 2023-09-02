@@ -7,7 +7,7 @@ import json, sys, os
 
 
 app = Flask(__name__, template_folder='templates')
-secret_key = os.environ.get("SECRET_KEY")
+app.secret_key = os.urandom(32)
 
 
 @app.route('/')
@@ -15,8 +15,8 @@ def index():
     return redirect(url_for('login'))
 
 
-@app.route('/index', methods=['GET', 'POST'])
-def main():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -29,8 +29,13 @@ def main():
         else:
             session['user'] = username
             session['data'] = data
-            return render_template('home.html')
+        return redirect(url_for('main'))
     return render_template('login.html')
+
+
+@app.route('/main', methods=['GET', 'POST'])
+def main():
+    return render_template('main.html')
 
 
 if __name__ == '__main__':
