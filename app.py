@@ -1,13 +1,13 @@
-import sys
-
 from flask import Flask,render_template
 from flask import redirect
 from flask import url_for
 from flask import request
-import json, sys
+from flask import session
+import json, sys, os
 
 
 app = Flask(__name__, template_folder='templates')
+secret_key = os.environ.get("SECRET_KEY")
 
 
 @app.route('/')
@@ -15,12 +15,11 @@ def index():
     return redirect(url_for('login'))
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
+@app.route('/index', methods=['GET', 'POST'])
+def main():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
         try:
             file = open("data/"+username+".json", 'r')
             data = json.load(file)
@@ -28,7 +27,9 @@ def login():
         except FileNotFoundError:
             print("用户不存在", sys.stderr)
         else:
-            return render_template('main.html')
+            session['user'] = username
+            session['data'] = data
+            return render_template('home.html')
     return render_template('login.html')
 
 
