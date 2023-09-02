@@ -16,31 +16,29 @@
                 <p>输入读者号/学号/姓名即可查询借阅记录与智能推荐</p>
             </div>
             <div class="main">
-                <form action="">
+                <form method="POST">
                     <p>
                       <label>
-                        <input type="text" placeholder="读者号/学号/姓名">
+                        <input type="number" name="username" placeholder="读者号/学号/姓名">
                       </label>
                     </p>
                     <p class="password">
-                        <input type="password" placeholder="密码">
+                        <input type="password" name="password" placeholder="密码">
                         <i class="ri-eye-off-line"></i>
                     </p>
                     <p>
-                        <input type="button" onclick='location.href=("main.html")' class="submit" value="查询">
+                        <input type="button" class="submit" value="查询">
                     </p>
                 </form>
                 <div class="options">
                     <div class="separator">
                         <p>智能图书推荐与兴趣分析系统</p>
                     </div>
-
 <!--                      <view class="contents">-->
 <!--                        <view class="button left"><navigator url="../dialog/dialog">更新日志</navigator></view>-->
 <!--                        <view class="button rght"><navigator url="../contact/contact">联系我们</navigator></view>-->
 <!--                        <view><text>版本号: V1.0.0</text></view>-->
 <!--                      </view>-->
-
                 </div>
             </div>
         </div>
