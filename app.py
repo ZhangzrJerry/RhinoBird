@@ -2,13 +2,10 @@ from flask import Flask,render_template
 from flask import redirect
 from flask import url_for
 from flask import request
-from flask import session
 import json, sys, os
 
 
 app = Flask(__name__, template_folder='templates')
-app.secret_key = os.urandom(32)
-app.permanent_session_lifetime = False
 
 
 @app.route('/')
@@ -21,6 +18,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        global user, data
         try:
             file = open("data/"+username+".json", 'r')
             data = json.load(file)
@@ -28,8 +26,7 @@ def login():
         except FileNotFoundError:
             print("用户不存在", sys.stderr)
         else:
-            session['user'] = username
-            session['data'] = data
+            user = username
             return redirect(url_for('main'))
     return render_template('login.html')
 
@@ -43,10 +40,12 @@ def main():
             return redirect(url_for('analysis'))
         if 'recommend' in request.form.to_dict().keys():
             return redirect(url_for('recommend'))
-    if session.get('user') is None:
+    try:
+        user
+    except NameError:
         return redirect(url_for('login'))
     else:
-        return render_template('main.html', username=session.get('user'))
+        return render_template('main.html', username=user)
 
 
 @app.route('/analysis', methods=['GET', 'POST'])
@@ -56,7 +55,12 @@ def analysis():
 
 @app.route('/timeline', methods=['GET', 'POST'])
 def timeline():
-    return render_template('timeline.html')
+    try:
+        data
+    except NameError:
+        return redirect(url_for('login'))
+    else:
+        return render_template('timeline.html', data=data)
 
 
 @app.route('/recommend', methods=['GET', 'POST'])
