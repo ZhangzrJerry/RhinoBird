@@ -35,7 +35,29 @@ def login():
 
 @app.route('/main', methods=['GET', 'POST'])
 def main():
+    if request.method == "POST":
+        if 'timeline' in request.form.to_dict().keys():
+            return redirect(url_for('timeline'))
+        if 'analysis' in request.form.to_dict().keys():
+            return redirect(url_for('analysis'))
+        if 'recommend' in request.form.to_dict().keys():
+            return redirect(url_for('recommend'))
     return render_template('main.html')
+
+
+@app.route('/analysis', methods=['GET', 'POST'])
+def analysis():
+    return render_template('analysis.html')
+
+
+@app.route('/timeline', methods=['GET', 'POST'])
+def timeline():
+    return render_template('timeline.html')
+
+
+@app.route('/recommend', methods=['GET', 'POST'])
+def recommend():
+    return render_template('recommend.html')
 
 
 if __name__ == '__main__':
