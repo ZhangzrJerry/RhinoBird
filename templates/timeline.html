@@ -5,6 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-timeline
+	<div>
+		{% for data in data %}
+			<div>
+				<p>{{ data.name }}</p>
+				<p>{{ data.date }}</p>
+				<p>{{ data.time }}</p>
+			</div>
+		{% endfor %}
+	</div>
 </body>
 </html>
