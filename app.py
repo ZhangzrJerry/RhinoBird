@@ -8,6 +8,7 @@ import json, sys, os
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = os.urandom(32)
+app.permanent_session_lifetime = False
 
 
 @app.route('/')
@@ -29,7 +30,7 @@ def login():
         else:
             session['user'] = username
             session['data'] = data
-        return redirect(url_for('main'))
+            return redirect(url_for('main'))
     return render_template('login.html')
 
 
@@ -42,7 +43,10 @@ def main():
             return redirect(url_for('analysis'))
         if 'recommend' in request.form.to_dict().keys():
             return redirect(url_for('recommend'))
-    return render_template('main.html')
+    if session.get('user') is None:
+        return redirect(url_for('login'))
+    else:
+        return render_template('main.html', username=session.get('user'))
 
 
 @app.route('/analysis', methods=['GET', 'POST'])
