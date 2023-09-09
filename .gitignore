@@ -1,9 +1,7 @@
-.zip
-.ipynb_checkpoints/*
+.idea/*
 
 bak/*
 data/*
-docs/*
-out/*
 
 DSSM/*
+LRU.py
