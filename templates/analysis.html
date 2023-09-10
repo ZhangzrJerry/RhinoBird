@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Path</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+	  </head>
 <body>
-analysis
+<div id="page" class="site">
+  <button class="back-btn"><a style="color: rgba(32,31,30,0.54)" href="main.html">BACK</a></button>
+  <div class="container">
+    <div class="login">
+      <div class="hero">
+        <h1>slide the screen down<br>to look through your reading path</h1>
+      </div>
+	  <div class="main">
+		{% if data %}
+			{% for month_data in data %}
+				<p><strong>月份:</strong> {{ month_data.month }}</p>
+				<p><strong>总时长:</strong> {{ month_data.total_duration }}</p>
+				<p><strong>阅读最久的书:</strong> {{ month_data.max_duration_book }}</p>
+				<p><strong>最久的书时长:</strong> {{ month_data.max_duration }}</p>
+				<p><strong>最多的类型:</strong> {{ month_data.max_type }}</p>
+				<p><strong>最多类型时长:</strong> {{ month_data.max_type_duration }}</p>
+				<hr> <!-- 添加水平线分隔每个月的数据 -->
+			{% endfor %}
+		{% else %}
+			<p>没有可用的阅读数据。</p>
+		{% endif %}
+	</div>
+
+	</div>
+</div>
+</div>
 </body>
 </html>
