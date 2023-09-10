@@ -5,8 +5,8 @@ from datetime import datetime, date, time
 
 
 if __name__ == '__main__':
-    df = pd.read_csv('../data/读者借阅数据.csv', encoding='gbk')
-    users = pd.read_csv('../data/users.csv', header=None)
+    df = pd.read_csv('../data/csv/读者借阅数据.csv', encoding='gbk')
+    users = pd.read_csv('../data/csv/users.csv', header=None)
 
     for user in tqdm(users.values):
         data = []
@@ -28,6 +28,6 @@ if __name__ == '__main__':
                     "dura": dura.days
                 }
             )
-        file = open('../data/' + user[0] + '.json', 'w', encoding='UTF-8')
+        file = open('../data/json' + user[0] + '.json', 'w', encoding='UTF-8')
         json.dump(data, file, ensure_ascii=False, indent=4)
         file.close()
