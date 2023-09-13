@@ -1,5 +1,6 @@
 .idea/*
 data/*
+*.pyc
 
 DSSM/*
 LRU.py
