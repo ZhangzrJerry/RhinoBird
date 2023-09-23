@@ -3,9 +3,11 @@ from flask import redirect
 from flask import url_for
 from flask import request
 import json, sys, os
+from tools.Predict import Predict
 
 
 app = Flask(__name__, template_folder='templates')
+predict = Predict()
 
 
 @app.route('/')
@@ -18,13 +20,15 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        print('username:{}, password:{}'.format(username, password), file=sys.stdout)
         global user, data
         try:
-            file = open("data/"+username+".json", 'r')
+            file = open("data/json/"+username+".json", 'r')
             data = json.load(file)
             file.close()
         except FileNotFoundError:
             print("用户不存在", sys.stderr)
+            print("data/json/"+username+".json", sys.stderr)
         else:
             user = username
             return redirect(url_for('main'))
@@ -43,6 +47,7 @@ def main():
     try:
         user
     except NameError:
+        print("用户未登录", sys.stderr)
         return redirect(url_for('login'))
     else:
         return render_template('main.html', username=user)
@@ -58,6 +63,7 @@ def timeline():
     try:
         data
     except NameError:
+        print("用户未登录", sys.stderr)
         return redirect(url_for('login'))
     else:
         return render_template('timeline.html', data=data)
@@ -65,7 +71,14 @@ def timeline():
 
 @app.route('/recommend', methods=['GET', 'POST'])
 def recommend():
-    return render_template('recommend.html')
+    try:
+        user
+    except NameError:
+        return redirect(url_for('login'))
+    else:
+        pick = predict.predict(user, 3)
+        print('recommend:', pick, file=sys.stdout)
+        return render_template('recommend.html', data=pick)
 
 
 if __name__ == '__main__':
