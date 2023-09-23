@@ -28,6 +28,6 @@ if __name__ == '__main__':
                     "dura": dura.days
                 }
             )
-        file = open('../data/json' + user[0] + '.json', 'w', encoding='UTF-8')
+        file = open('../data/json/' + user[0] + '.json', 'w', encoding='UTF-8')
         json.dump(data, file, ensure_ascii=False, indent=4)
         file.close()
