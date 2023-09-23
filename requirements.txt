@@ -2,4 +2,4 @@ numpy~=1.25.2
 pandas~=2.1.0
 tqdm~=4.66.1
 flask~=2.3.3
-paddlenlp~=2.6.0
+paddlepaddle~=2.5.0
