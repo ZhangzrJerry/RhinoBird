@@ -2,11 +2,12 @@ from flask import Flask,render_template
 from flask import redirect
 from flask import url_for
 from flask import request
-import tools.CF as CF
 import json, sys, os
+from tools.Predict import Predict
 
 
 app = Flask(__name__, template_folder='templates')
+predict = Predict()
 
 
 @app.route('/')
@@ -75,7 +76,7 @@ def recommend():
     except NameError:
         return redirect(url_for('login'))
     else:
-        pick = CF.predict(user)
+        pick = predict.predict(user, 3)
         print('recommend:', pick, file=sys.stdout)
         return render_template('recommend.html', data=pick)
 
