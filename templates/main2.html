@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智能图书推荐与兴趣分析系统</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</script>
+</head>
+<body>
+<div id="page" class="site">
+  <div class="container">
+    <div class="login">
+      <div class="hero">
+        <h1>您好<br>{{username}}</h1>
+        <p>书山有路勤为径，学海无涯苦作舟</p>
+      </div>
+      <div class="main">
+        <form method="POST">
+        <input type="submit" name='timeline' class="reading-timeline" value="阅迹：追溯你的阅读足迹和故事">
+        <input type="submit" name='analysis' class="reading-analysis" value="阅鉴：探索你的阅读性格和风格">
+        <input type="submit" name='recommend' class="reading-recommendation" value="阅选：为你推荐你想要的图书">
+        </form>
+        <div class="options">
+          <div class="separator">
+            <p>智能图书推荐与兴趣分析系统</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
