@@ -5,11 +5,11 @@ from flask import request
 import json, sys, os
 from tools.calculate_duration import calculate_duration
 from tools.analysis import analysis_data
-# from tools.Predict import Predict
+from tools.Predict import Predict
 
 
 app = Flask(__name__, template_folder='templates')
-# predict = Predict()
+predict = Predict()
 
 
 @app.route('/')
@@ -95,16 +95,14 @@ def timeline():
 
 @app.route('/recommend', methods=['GET', 'POST'])
 def recommend():
-    return render_template('recommend.html')
-    # try:
-    #     user
-    # except NameError:
-    #     return redirect(url_for('login'))
-    # else:
-    #     return redirect(url_for('login'))
-        # pick = predict.predict(user, 3)
-        # print('recommend:', pick, file=sys.stdout)
-        # return render_template('recommend.html', data=pick)
+    try:
+        user
+    except NameError:
+        return redirect(url_for('login'))
+    else:
+        pick = predict.predict(user, 3)
+        print('recommend:', pick, file=sys.stdout)
+        return render_template('recommend.html', data=pick)
 
 
 if __name__ == '__main__':
