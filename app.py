@@ -66,7 +66,7 @@ def timeline():
         print("用户未登录", sys.stderr)
         return redirect(url_for('login'))
     else:
-        return render_template('timeline.html', data=data)
+        return render_template('timeline.html', data=data,username=user)
 
 
 @app.route('/recommend', methods=['GET', 'POST'])
