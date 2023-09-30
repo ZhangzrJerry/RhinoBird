@@ -64,23 +64,32 @@ def book_search(book_title):
 def get_book_info(book_info_soup):
     author_match_grouped = ''
     # 提取评分与评价人数
-    rating = book_info_soup.find('div', {'class': 'rating_self clearfix'})
-    rating_num = rating.find('strong').string.strip()
-    if not rating_num:
+    try:
+        rating = book_info_soup.find('div', {'class': 'rating_self clearfix'})
+        rating_num = rating.find('strong').string.strip()
+        rating_people = rating.find('span', property="v:votes").string.strip()
+    except AttributeError:
         rating_num = "-"
         rating_people = "评价人数不足"
-    else:
-        rating_people = rating.find('span', property="v:votes").string.strip()
+        pass
     # 提取书籍的页数和出版年
     span_list = book_info_soup.findChild('div', {'id': 'info'})
-    info_text = str(span_list.get_text())
+    try:
+        info_text = str(span_list.get_text())
+    except AttributeError:
+        info_text = ""
+        pass
     pages_match = re.search(r'页数:\s*(\d+)', info_text)
     author_match = re.search(r'作者:\s*(.+)', info_text)
-    if author_match.group(1).endswith(" 著"):
-        author_match_grouped = author_match.group(1)[:-2]
-    else:
-        author_match_grouped = author_match.group(1)
-    author_match_grouped = author_match_grouped.replace(" ", "")
+    try:
+        if author_match.group(1).endswith(" 著"):
+            author_match_grouped = author_match.group(1)[:-2]
+        else:
+            author_match_grouped = author_match.group(1)
+        author_match_grouped = author_match_grouped.replace(" ", "")
+    except AttributeError:
+        author_match_grouped = ""
+        pass
     if pages_match:
         pages = int(pages_match.group(1))
     else:
