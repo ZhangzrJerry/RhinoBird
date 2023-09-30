@@ -1,5 +1,8 @@
-numpy~=1.25.2
 pandas~=2.1.0
 tqdm~=4.66.1
+jieba~=0.42.1
+requests~=2.31.0
+bs4~=0.0.1
+beautifulsoup4~=4.12.2
+selenium~=3.3.0
 flask~=2.3.3
-paddlepaddle~=2.5.0
