@@ -227,151 +227,9 @@ def count_borrow_and_return_by_month(data):
     return borrow_counts, return_counts
 
 
-def main():
+def analysis_data(data):
     global book_cache
     book_cache = load_cache()
-    data = [
-        {
-            "name": "洗澡",
-            "borrow": "2023-02-25",
-            "return": "2023-03-20",
-            "type": "文学",
-            "dura": 23
-        },
-        {
-            "name": "加缪的手记·第一卷：1935.5-1942.2",
-            "borrow": "2023-02-06",
-            "return": "2023-02-13",
-            "type": "哲学、宗教",
-            "dura": 7
-        },
-        {
-            "name": "第一人称单数",
-            "borrow": "2023-04-19",
-            "return": "2023-05-05",
-            "type": "文学",
-            "dura": 16
-        },
-        {
-            "name": "被抹去的历史:巴拿马运河无人诉说的故事",
-            "borrow": "2023-04-05",
-            "return": "2023-04-10",
-            "type": "历史、地理",
-            "dura": 5
-        },
-        {
-            "name": "马可瓦尔多",
-            "borrow": "2023-03-27",
-            "return": "2023-04-10",
-            "type": "文学",
-            "dura": 14
-        },
-        {
-            "name": "大脑喜欢听你这样说",
-            "borrow": "2023-05-08",
-            "return": "2023-05-15",
-            "type": "哲学、宗教",
-            "dura": 7
-        },
-        {
-            "name": "霍乱时期的爱情",
-            "borrow": "2023-05-24",
-            "return": "2023-06-02",
-            "type": "文学",
-            "dura": 9
-        },
-        {
-            "name": "雪山飞狐",
-            "borrow": "2022-11-07",
-            "return": "2022-11-09",
-            "type": "文学",
-            "dura": 2
-        },
-        {
-            "name": "新诗十讲",
-            "borrow": "2021-09-13",
-            "return": "2021-09-26",
-            "type": "文学",
-            "dura": 13
-        },
-        {
-            "name": "闻一多画传",
-            "borrow": "2021-09-13",
-            "return": "2021-09-13",
-            "type": "历史、地理",
-            "dura": 0
-        },
-        {
-            "name": "有趣儿:老舍笔下的人生幽默",
-            "borrow": "2023-07-04",
-            "return": "2023-07-06",
-            "type": "文学",
-            "dura": 2
-        },
-        {
-            "name": "活着",
-            "borrow": "2023-02-06",
-            "return": "2023-02-06",
-            "type": "文学",
-            "dura": 0
-        },
-        {
-            "name": "苏北少年“堂吉诃德”",
-            "borrow": "2023-02-13",
-            "return": "2023-03-20",
-            "type": "文学",
-            "dura": 35
-        },
-        {
-            "name": "中国妖怪",
-            "borrow": "2023-04-05",
-            "return": "2023-04-10",
-            "type": "文学",
-            "dura": 5
-        },
-        {
-            "name": "长河",
-            "borrow": "2023-04-10",
-            "return": "2023-04-19",
-            "type": "文学",
-            "dura": 9
-        },
-        {
-            "name": "强风吹拂",
-            "borrow": "2023-05-18",
-            "return": "2023-05-24",
-            "type": "文学",
-            "dura": 6
-        },
-        {
-            "name": "你的行为使我们恐惧",
-            "borrow": "2023-05-15",
-            "return": "2023-05-18",
-            "type": "文学",
-            "dura": 3
-        },
-        {
-            "name": "红楼夜话",
-            "borrow": "2023-06-02",
-            "return": "2023-06-19",
-            "type": "文学",
-            "dura": 17
-        },
-        {
-            "name": "再袭面包店",
-            "borrow": "2023-06-19",
-            "return": "2023-06-21",
-            "type": "文学",
-            "dura": 2
-        },
-        {
-            "name": "名侦探的守则",
-            "borrow": "2022-10-09",
-            "return": "2022-11-09",
-            "type": "文学",
-            "dura": 31
-        }
-    ]
 
     average_pages_per_day, average_rating_count, average_rating, borrow_dates, return_dates, total_borrow_count, \
     longest_reading_book, longest_reading_time, characteristics, author_counts = analyze_reading_data(data)
@@ -408,7 +266,6 @@ def main():
     most_common_author = max(author_counts, key=author_counts.get) if author_counts else "N/A"
     most_common_author_count = author_counts.get(most_common_author, 0)
     print(f"阅读书籍中最多的作者是：{most_common_author}，共出现了 {most_common_author_count} 次")
-
-
-if __name__ == "__main__":
-    main()
+    return average_pages_per_day, average_rating_count, average_rating, most_read_type_data, most_read_count, total_borrow_count, \
+              max_borrow_month, max_borrow_count, max_return_month, max_return_count, longest_reading_book, longest_reading_time, \
+                characteristics, most_common_author, most_common_author_count
