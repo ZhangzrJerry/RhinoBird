@@ -3,11 +3,11 @@ from flask import redirect
 from flask import url_for
 from flask import request
 import json, sys, os
-from tools.Predict import Predict
+# from tools.Predict import Predict
 
 
 app = Flask(__name__, template_folder='templates')
-predict = Predict()
+# predict = Predict()
 
 
 @app.route('/')
@@ -23,12 +23,12 @@ def login():
         print('username:{}, password:{}'.format(username, password), file=sys.stdout)
         global user, data
         try:
-            file = open("data/json/"+username+".json", 'r')
+            file = open("data/json/" + username + ".json", 'r', encoding='utf-8')
             data = json.load(file)
             file.close()
         except FileNotFoundError:
             print("用户不存在", sys.stderr)
-            print("data/json/"+username+".json", sys.stderr)
+            print("data/json/" + username + ".json", sys.stderr)
         else:
             user = username
             return redirect(url_for('main'))
@@ -76,9 +76,10 @@ def recommend():
     except NameError:
         return redirect(url_for('login'))
     else:
-        pick = predict.predict(user, 3)
-        print('recommend:', pick, file=sys.stdout)
-        return render_template('recommend.html', data=pick)
+        return redirect(url_for('login'))
+        # pick = predict.predict(user, 3)
+        # print('recommend:', pick, file=sys.stdout)
+        # return render_template('recommend.html', data=pick)
 
 
 if __name__ == '__main__':
