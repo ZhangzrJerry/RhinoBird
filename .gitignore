@@ -4,3 +4,4 @@ runs/*
 *.pyc
 
 book_cache.json
+ghostdriver.log
