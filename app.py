@@ -3,6 +3,7 @@ from flask import redirect
 from flask import url_for
 from flask import request
 import json, sys, os
+from tools.calculate_duration import calculate_duration
 # from tools.Predict import Predict
 
 
@@ -62,11 +63,12 @@ def analysis():
 def timeline():
     try:
         data
+        dura_sum = calculate_duration(data)
     except NameError:
         print("用户未登录", sys.stderr)
         return redirect(url_for('login'))
     else:
-        return render_template('timeline.html', data=data,username=user)
+        return render_template('timeline.html', data=data,username=user, dura=dura_sum)
 
 
 @app.route('/recommend', methods=['GET', 'POST'])
