@@ -1,38 +1,189 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Path</title>
-		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-	  </head>
+<!-- This site was created in Webflow. https://www.webflow.com --><!-- Last Published: Fri Sep 29 2023 14:49:29 GMT+0000 (Coordinated Universal Time) -->
+<html
+        data-wf-domain="reading-analysis.webflow.io"
+        data-wf-page="650eebdb33137a6ce31daa8b"
+        data-wf-site="650eebda33137a6ce31daa0b"
+        lang="zh"
+>
+<head>
+    <meta charset="utf-8"/>
+    <title>阅鉴：探索你的阅读性格和风格</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <link
+            href="{{url_for('static', filename='analysis.css')}}"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link
+            href="https://fonts.gstatic.com"
+            rel="preconnect"
+            crossorigin="anonymous"
+    />
+    <script
+            src="{{url_for('static', filename='webfont.js')}}"
+            type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+        WebFont.load({google: {families: ["Manrope:regular,600,700"]}});
+    </script>
+    <script type="text/javascript">
+        !(function (o, c) {
+            var n = c.documentElement,
+                t = " w-mod-";
+            (n.className += t + "js"),
+            ("ontouchstart" in o ||
+                (o.DocumentTouch && c instanceof DocumentTouch)) &&
+            (n.className += t + "touch");
+        })(window, document);
+    </script>
+    <link
+            href="{{url_for('static', filename = 'site_image/site-icon-32.png')}}"
+            rel="shortcut icon"
+            type="image/x-icon"
+    />
+    <link
+            href="{{url_for('static', filename = 'site_image/site-icon-256.png')}}"
+            rel="apple-touch-icon"
+    />
+</head>
 <body>
-<div id="page" class="site">
-  <button class="back-btn"><a style="color: rgba(32,31,30,0.54)" href="main.html">BACK</a></button>
-  <div class="container">
-    <div class="login">
-      <div class="hero">
-        <h1>slide the screen down<br>to look through your reading path</h1>
-      </div>
-	  <div class="main">
-		{% if data %}
-			{% for month_data in data %}
-				<p><strong>月份:</strong> {{ month_data.month }}</p>
-				<p><strong>总时长:</strong> {{ month_data.total_duration }}</p>
-				<p><strong>阅读最久的书:</strong> {{ month_data.max_duration_book }}</p>
-				<p><strong>最久的书时长:</strong> {{ month_data.max_duration }}</p>
-				<p><strong>最多的类型:</strong> {{ month_data.max_type }}</p>
-				<p><strong>最多类型时长:</strong> {{ month_data.max_type_duration }}</p>
-				<hr> <!-- 添加水平线分隔每个月的数据 -->
-			{% endfor %}
-		{% else %}
-			<p>没有可用的阅读数据。</p>
-		{% endif %}
-	</div>
+<div class="page-wrapper">
+    <div
+            data-w-id="8b78767b-3760-c53b-4567-085cfdd124ca"
+            data-animation="default"
+            data-collapse="small"
+            data-duration="400"
+            data-easing="ease"
+            data-easing2="ease"
+            role="banner"
+            class="header-wrapper w-nav"
+    >
+        <div class="container-default w-container">
+            <div class="header-content-wrapper">
+                <div class="header-top-wrapper">
+                    <a href="index.html" class="header-logo-link w-nav-brand"
+                    ><img
+                            src="{{url_for('static', filename='site_image/logo.png')}}"
+                            srcset="
+                    {{url_for('static', filename='site_image/logo-500.png')}}   500w,
+                    {{url_for('static', filename='site_image/logo-800.png')}}   800w,
+                    {{url_for('static', filename='site_image/logo-1080.png')}} 1080w,
+                    {{url_for('static', filename='site_image/logo-1600.png')}} 1600w,
+                    {{url_for('static', filename='site_image/logo-1721.png')}}        1721w
+                  "
+                            width="423"
+                            sizes="(max-width: 479px) 76vw, (max-width: 767px) 380.6875px, (max-width: 991px) 400px, 423px"
+                            alt=""
+                            class="header-logo"
+                    /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section blog-post-hero">
+        <div class="container-default blog-post w-container">
+            <div
+                    data-w-id="f2348818-5b13-3b18-fe75-10e18d5f2bb9"
+                    style="
+              -webkit-transform: translate3d(0, 10%, 0) scale3d(1, 1, 1)
+                rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
+              -moz-transform: translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0)
+                rotateY(0) rotateZ(0) skew(0, 0);
+              -ms-transform: translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0)
+                rotateY(0) rotateZ(0) skew(0, 0);
+              transform: translate3d(0, 10%, 0) scale3d(1, 1, 1) rotateX(0)
+                rotateY(0) rotateZ(0) skew(0, 0);
+              opacity: 1;
+            "
+                    class="inner-container _740px"
+            >
+                <div>
+                    <h1 class="display-1 color-neutral-100 mg-bottom-32px">阅鉴</h1>
+                    <div class="blog-card-details-container">
+                        <div class="author-container">
+                            <div class="text-200 bold color-neutral-100">您好，{{username}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-overlay-gradient blog-post">
+            <img
+                    src="{{url_for('static', filename='analysis/banner.jpg')}}"
+                    loading="lazy"
+                    width="1985"
+                    sizes="100vw"
+                    alt=""
+                    srcset="
+              {{url_for('static', filename='analysis/banner-500.jpg')}}   500w,
+              {{url_for('static', filename='analysis/banner-800.jpg')}}   800w,
+              {{url_for('static', filename='analysis/banner-1080.jpg')}} 1080w,
+              {{url_for('static', filename='analysis/banner-1600.jpg')}} 1600w,
+              {{url_for('static', filename='analysis/banner-2000.jpg')}} 2000w,
+              {{url_for('static', filename='analysis/banner-2600.jpg')}} 2600w,
+              {{url_for('static', filename='analysis/banner-3200.jpg')}} 3200w,
+              {{url_for('static', filename='analysis/banner.jpg')}}       4744w
+            "
+                    class="image"
+            />
+        </div>
+    </div>
+    <div class="section main-posts post">
+        <div class="container-default w-container">
+            <div id="w-node-_54fd4ba7-70aa-f93a-827d-9e05c0df15a0-e31daa8b">
+                <div
+                        data-w-id="54fd4ba7-70aa-f93a-827d-9e05c0df15a1"
+                        style="opacity: 1"
+                        class="rich-text w-richtext"
+                >
+                    <h2>追求知识的征程</h2>
+                    <p>
+                        从你开始在图书馆借书的那一刻起，你就踏上了一段充满智慧和体验的精彩阅读之旅。数年来，你已经阅读了<strong>{{total_borrow_count}}本</strong>书籍，平均每天的阅读量达到<strong>{{average_pages_per_day}}页</strong>。这个数字背后反映了你对知识和文化的不懈追求，与你的求知之志相辅相成。
+                    </p>
+                    <h2>阅读之美</h2>
+                    <p>
+                        在这些书籍中，<strong>{{most_read_type_data}}</strong>是你钟爱的领域，你沉浸在其中<strong>{{most_read_count}}本</strong>作品中，品味着每个作家的独特笔触，感受着他们创造的精妙故事。
+                    </p>
+                    <h2><strong>品质与深度</strong></h2>
+                    <p>
+                        你选择的书籍平均有<strong>{{average_rating_count}}人</strong>参与评价，这显示了你总是追求那些备受欢迎和有深度的读物。这些书籍的平均评分高达<strong>{{average_rating}}分</strong>，再次印证了你对卓越作品的眼光。
+                    </p>
+                    <h2><strong>阅读的热情</strong></h2>
+                    <p>
+                        从你的借书和还书记录中，我们可以看到你的阅读热情。在<strong>{{max_borrow_month}}，你借阅了{{max_borrow_count}}本书，</strong>似乎你在那个月内沉浸于阅读的海洋中。而在<strong>{{max_return_month}}，你归还了{{max_return_count}}本书</strong>，表明你是一个负责任的读者，重视与图书馆的承诺。
+                    </p>
+                    <h2>深刻的笔触</h2>
+                    <p>
+                        此外，你以<strong>{{longest_reading_time}}天</strong>的时间来阅读<strong>{{longest_reading_book}}</strong>，这本书成为了你阅读经历中的一座高山，你在其间品味了无数个智慧的瞬间。
+                    </p>
+                    <p>
+                        最后，<strong>{{most_common_author}}</strong>的作品在你的阅读清单中出现了<strong>{{most_common_author_count}}次</strong>，这显示了你对这位杰出作家的喜爱和对他文学贡献的尊敬。
+                    </p>
+                    <h2>阅读之路</h2>
+                    <p>
+                        感谢你与我们分享了这段充满智慧的阅读之旅。愿未来的日子里，你继续深入书海，汲取更多的知识和启示。<br>
+                        你的阅读关键词是：<strong>{{characteristics}}</strong>
 
-	</div>
-</div>
+                    </p>
+                    <p>愿阅读之路，如同博学的众水，不断奔流，不断前行。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-wrapper">
+        <div
+                data-w-id="06aad7a3-f803-05db-60f0-47a7ef403b7b"
+                class="container-default w-container"
+        >
+            <div class="footer-bottom">
+                <p class="mg-bottom-0">
+                    智能图书推荐与兴趣分析系统
+                </p>
+            </div>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
