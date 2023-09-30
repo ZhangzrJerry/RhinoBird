@@ -3,11 +3,10 @@ import numpy as np
 import pandas as pd
 import paddle, json, random
 
-
 class Predict:
     def __init__(self):
-        self.users = pd.read_csv('data/csv/users.csv')
-        self.items = pd.read_csv('data/csv/items.csv')
+        self.users = pd.read_csv('data/csv/users.csv', header=None)
+        self.items = pd.read_csv('data/csv/items.csv', header=None)
         self.dssm = DSSM(len(self.users), len(self.items))
         self.dssm.set_state_dict(paddle.load('data/net/model.pdparams'))
 
