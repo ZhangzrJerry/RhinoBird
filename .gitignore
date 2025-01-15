@@ -1,5 +1,7 @@
 .idea/*
 data/*
+runs/*
 *.pyc
 
-LRU.py
+book_cache.json
+ghostdriver.log
